@@ -10,7 +10,15 @@ for (const el of population) {
 const totalPopulationEl = document.querySelector('.total-population');
 const averagePopulationEl = document.querySelector('.average-population');
 
-const total = populationArray.reduce((acc, sum) => acc + Number(sum), 0);
+const total = populationArray.reduce((acc, sum) => {
+  const num = Number(sum);
+
+  if (isNaN(num)) {
+    return acc;
+  }
+
+  return acc + num;
+}, 0);
 const average = Math.floor(total / populationArray.length);
 
 totalPopulationEl.textContent = total.toLocaleString('en-US');
